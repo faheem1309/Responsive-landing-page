@@ -82,6 +82,25 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
+    /* ✅ NAV TIMELINE ANIMATION (ADDED – nothing else changed) */
+    const navTimeline = gsap.timeline({
+      defaults: {
+        duration: 0.6,
+        ease: "power3.out"
+      }
+    });
+
+    navTimeline
+      .from(".logo", {
+        y: -20,
+        opacity: 0
+      })
+      .from(".nav a", {
+        y: -15,
+        opacity: 0,
+        stagger: 0.15
+      }, "-=0.2");
+
     /* Page load */
     gsap.from("section, header, footer", {
       opacity: 0,
