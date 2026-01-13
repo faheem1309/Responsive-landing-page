@@ -8,6 +8,7 @@
 /* Variables */
 :root {
   --primary: #6c63ff;
+  --primary-soft: rgba(108, 99, 255, 0.15);
   --dark: #111;
   --light: #f4f6ff;
   --text: #222;
@@ -55,10 +56,22 @@ body {
   text-decoration: none;
   color: var(--text);
   font-weight: 500;
+  position: relative;
 }
 
-.nav a:hover {
-  color: var(--primary);
+.nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  left: 0;
+  bottom: -6px;
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
 }
 
 /* Hero */
@@ -66,11 +79,11 @@ body {
   background: linear-gradient(135deg, #6c63ff, #857dff);
   color: #fff;
   text-align: center;
-  padding: 100px 20px;
+  padding: 110px 20px;
 }
 
 .hero h1 {
-  font-size: 2.7rem;
+  font-size: 2.8rem;
   margin-bottom: 15px;
 }
 
@@ -81,25 +94,50 @@ body {
   opacity: 0.9;
 }
 
+/* Buttons */
+.primary-btn,
+.secondary-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
 .primary-btn {
-  padding: 14px 30px;
+  padding: 14px 32px;
   background: #fff;
   color: var(--primary);
   border: none;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .primary-btn:hover {
-  transform: scale(1.05);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.secondary-btn {
+  margin-top: 20px;
+  padding: 14px 32px;
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.secondary-btn:hover {
+  transform: translateY(-3px);
+  background: #554cff;
 }
 
 /* Features */
 .features {
   background: var(--light);
-  padding: 80px 20px;
+  padding: 90px 20px;
 }
 
 .features-grid {
@@ -109,10 +147,16 @@ body {
 
 .card {
   background: #fff;
-  padding: 35px;
+  padding: 40px;
   text-align: center;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(108, 99, 255, 0.25);
 }
 
 .card h3 {
@@ -125,22 +169,7 @@ body {
   background: var(--dark);
   color: #fff;
   text-align: center;
-  padding: 70px 20px;
-}
-
-.secondary-btn {
-  margin-top: 20px;
-  padding: 14px 30px;
-  background: var(--primary);
-  border: none;
-  color: #fff;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.secondary-btn:hover {
-  background: #554cff;
+  padding: 80px 20px;
 }
 
 /* Footer */
@@ -149,6 +178,7 @@ body {
   text-align: center;
   padding: 20px;
   font-size: 0.9rem;
+  color: #555;
 }
 
 /* Responsive */

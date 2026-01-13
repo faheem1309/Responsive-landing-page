@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flowly — Design. Deploy. Flow.</title>
 
-  <meta name="description" content="Flowly is a modern, animated, responsive landing page built with HTML, CSS, and GSAP." />
+  <meta name="description" content="Flowly is an elegant, animated, responsive landing page built with HTML, CSS, and GSAP." />
 
   <link rel="stylesheet" href="style.css" />
 
@@ -39,7 +39,7 @@
     <div class="container hero-content">
       <h1>Build Websites That Flow</h1>
       <p>
-        A modern, animated, responsive landing page using HTML, CSS, and GSAP.
+        Elegant motion. Clean design. Modern responsiveness.
       </p>
       <button class="primary-btn">Start Building</button>
     </div>
@@ -50,15 +50,15 @@
     <div class="container features-grid">
       <div class="card">
         <h3>Fast Setup</h3>
-        <p>Lightweight structure with instant results.</p>
+        <p>Minimal structure with maximum clarity.</p>
       </div>
       <div class="card">
-        <h3>GSAP Animations</h3>
-        <p>Smooth, professional motion that feels alive.</p>
+        <h3>Elegant Motion</h3>
+        <p>Subtle animations that feel natural and refined.</p>
       </div>
       <div class="card">
-        <h3>Fully Responsive</h3>
-        <p>Perfect on mobile, tablet, and desktop.</p>
+        <h3>Responsive Design</h3>
+        <p>Perfect experience on every screen.</p>
       </div>
     </div>
   </section>
@@ -66,7 +66,7 @@
   <!-- CTA -->
   <section class="cta">
     <div class="container">
-      <h2>Ready to make your UI move?</h2>
+      <h2>Make your UI feel alive</h2>
       <button class="secondary-btn">Launch Now</button>
     </div>
   </section>
@@ -80,7 +80,6 @@
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    // Header animation
     gsap.from(".header", {
       y: -80,
       opacity: 0,
@@ -88,29 +87,15 @@
       ease: "power3.out"
     });
 
-    // Hero animation
-    gsap.from(".hero-content h1", {
+    gsap.from(".hero-content > *", {
       y: 40,
       opacity: 0,
       duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
       delay: 0.3
     });
 
-    gsap.from(".hero-content p", {
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      delay: 0.6
-    });
-
-    gsap.from(".primary-btn", {
-      scale: 0.8,
-      opacity: 0,
-      duration: 0.8,
-      delay: 0.9
-    });
-
-    // Feature cards slide-in
     gsap.from(".card", {
       scrollTrigger: {
         trigger: ".features",
@@ -123,7 +108,6 @@
       ease: "power2.out"
     });
 
-    // CTA animation
     gsap.from(".cta h2, .secondary-btn", {
       scrollTrigger: {
         trigger: ".cta",
@@ -132,7 +116,16 @@
       y: 40,
       opacity: 0,
       duration: 0.8,
-      stagger: 0.2
+      stagger: 0.2,
+      ease: "power2.out"
+    });
+
+    gsap.to(".logo svg", {
+      y: -4,
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
     });
   </script>
 
