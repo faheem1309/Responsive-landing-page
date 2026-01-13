@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flowly — Design. Deploy. Flow.</title>
 
-  <meta name="description" content="Flowly is an elegant, animated, responsive landing page built with HTML, CSS, and GSAP." />
+  <meta name="description" content="Flowly is an elegant, motion-rich, interactive landing page built with HTML, CSS, and GSAP." />
 
   <link rel="stylesheet" href="style.css" />
 
@@ -16,9 +16,9 @@
 <body>
 
   <!-- Header -->
-  <header class="header">
+  <header class="header floating">
     <div class="container header-flex">
-      <div class="logo">
+      <div class="logo floating-slow">
         <svg width="36" height="36" viewBox="0 0 100 100">
           <circle cx="50" cy="50" r="45" fill="#6c63ff" />
           <path d="M30 55 Q50 30 70 55" stroke="#fff" stroke-width="6" fill="none" />
@@ -35,97 +35,120 @@
   </header>
 
   <!-- Hero -->
-  <section class="hero">
+  <section class="hero floating">
     <div class="container hero-content">
-      <h1>Build Websites That Flow</h1>
-      <p>
-        Elegant motion. Clean design. Modern responsiveness.
+      <h1 class="floating-slow">Build Websites That Flow</h1>
+      <p class="floating-slower">
+        Elegant motion. Clean design. Always alive.
       </p>
-      <button class="primary-btn">Start Building</button>
+      <button class="primary-btn pulse">Start Building</button>
     </div>
   </section>
 
   <!-- Features -->
   <section class="features">
     <div class="container features-grid">
-      <div class="card">
+      <div class="card idle-float">
         <h3>Fast Setup</h3>
         <p>Minimal structure with maximum clarity.</p>
       </div>
-      <div class="card">
-        <h3>Elegant Motion</h3>
-        <p>Subtle animations that feel natural and refined.</p>
+
+      <div class="card idle-float">
+        <h3>Living Motion</h3>
+        <p>Animations that never feel static.</p>
       </div>
-      <div class="card">
-        <h3>Responsive Design</h3>
-        <p>Perfect experience on every screen.</p>
+
+      <div class="card idle-float">
+        <h3>Responsive Feel</h3>
+        <p>Every interaction responds to you.</p>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="cta">
+  <section class="cta floating">
     <div class="container">
-      <h2>Make your UI feel alive</h2>
-      <button class="secondary-btn">Launch Now</button>
+      <h2 class="floating-slow">Make your UI breathe</h2>
+      <button class="secondary-btn pulse-soft">Launch Now</button>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <p>© 2026 Flowly. Crafted with motion.</p>
+  <footer class="footer floating-slower">
+    <p>© 2026 Flowly. Always in motion.</p>
   </footer>
 
-  <!-- GSAP Animations -->
+  <!-- GSAP Motion Engine -->
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.from(".header", {
-      y: -80,
+    /* Page load */
+    gsap.from("section, header, footer", {
       opacity: 0,
+      y: 40,
       duration: 1,
+      stagger: 0.15,
       ease: "power3.out"
     });
 
-    gsap.from(".hero-content > *", {
-      y: 40,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out",
-      delay: 0.3
-    });
-
-    gsap.from(".card", {
-      scrollTrigger: {
-        trigger: ".features",
-        start: "top 80%"
-      },
-      y: 60,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power2.out"
-    });
-
-    gsap.from(".cta h2, .secondary-btn", {
-      scrollTrigger: {
-        trigger: ".cta",
-        start: "top 85%"
-      },
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.2,
-      ease: "power2.out"
-    });
-
-    gsap.to(".logo svg", {
-      y: -4,
-      duration: 2,
+    /* Continuous floating (idle motion) */
+    gsap.to(".floating", {
+      y: -8,
+      duration: 4,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut"
+    });
+
+    gsap.to(".floating-slow", {
+      y: -12,
+      duration: 6,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    gsap.to(".floating-slower", {
+      y: -6,
+      duration: 8,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    /* Cards idle float */
+    gsap.to(".idle-float", {
+      y: -10,
+      duration: 5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      stagger: 0.4
+    });
+
+    /* Hover-follow motion for cards */
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("mousemove", e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        gsap.to(card, {
+          x: x * 0.05,
+          y: y * 0.05,
+          duration: 0.4,
+          ease: "power2.out"
+        });
+      });
+
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, {
+          x: 0,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out"
+        });
+      });
     });
   </script>
 
