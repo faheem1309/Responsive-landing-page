@@ -4,7 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flowly — Design. Deploy. Flow.</title>
+
+  <meta name="description" content="Flowly is a modern, animated, responsive landing page built with HTML, CSS, and GSAP." />
+
   <link rel="stylesheet" href="style.css" />
+
+  <!-- GSAP -->
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
@@ -12,8 +19,8 @@
   <header class="header">
     <div class="container header-flex">
       <div class="logo">
-        <svg width="36" height="36" viewBox="0 0 100 100" aria-hidden="true">
-          <circle cx="50" cy="50" r="45" fill="#111" />
+        <svg width="36" height="36" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="#6c63ff" />
           <path d="M30 55 Q50 30 70 55" stroke="#fff" stroke-width="6" fill="none" />
         </svg>
         <span>Flowly</span>
@@ -27,70 +34,107 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
-    <div class="container">
+    <div class="container hero-content">
       <h1>Build Websites That Flow</h1>
       <p>
-        Flowly helps you design and deploy clean, responsive websites using
-        simple, modern web standards.
+        A modern, animated, responsive landing page using HTML, CSS, and GSAP.
       </p>
       <button class="primary-btn">Start Building</button>
     </div>
   </section>
 
-  <!-- Features Section -->
+  <!-- Features -->
   <section class="features">
     <div class="container features-grid">
       <div class="card">
         <h3>Fast Setup</h3>
-        <p>Start building instantly with a lightweight and simple structure.</p>
+        <p>Lightweight structure with instant results.</p>
       </div>
-
       <div class="card">
-        <h3>Responsive Design</h3>
-        <p>Your site looks great on mobile, tablet, and desktop.</p>
+        <h3>GSAP Animations</h3>
+        <p>Smooth, professional motion that feels alive.</p>
       </div>
-
       <div class="card">
-        <h3>Beginner Friendly</h3>
-        <p>No frameworks. Just clean HTML and CSS that anyone can understand.</p>
+        <h3>Fully Responsive</h3>
+        <p>Perfect on mobile, tablet, and desktop.</p>
       </div>
     </div>
   </section>
 
-  <section class="why">
-  <div class="container">
-    <h2>Why Flowly?</h2>
-    <p>
-      Because building responsive websites shouldn’t require heavy tools.
-      Flowly focuses on clarity, speed, and modern standards.
-    </p>
-  </div>
-</section>
-
-<section class="testimonials">
-  <div class="container">
-    <blockquote>
-      “Flowly helped me understand responsive design without overwhelm.”
-      <span>— Frontend Learner</span>
-    </blockquote>
-  </div>
-</section>
-
-
-  <!-- Call to Action -->
+  <!-- CTA -->
   <section class="cta">
     <div class="container">
-      <h2>Ready to launch your next idea?</h2>
-      <button class="secondary-btn">Get Started Today</button>
+      <h2>Ready to make your UI move?</h2>
+      <button class="secondary-btn">Launch Now</button>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <p>© 2026 Flowly. All rights reserved.</p>
+    <p>© 2026 Flowly. Crafted with motion.</p>
   </footer>
+
+  <!-- GSAP Animations -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Header animation
+    gsap.from(".header", {
+      y: -80,
+      opacity: 0,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    // Hero animation
+    gsap.from(".hero-content h1", {
+      y: 40,
+      opacity: 0,
+      duration: 1,
+      delay: 0.3
+    });
+
+    gsap.from(".hero-content p", {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.6
+    });
+
+    gsap.from(".primary-btn", {
+      scale: 0.8,
+      opacity: 0,
+      duration: 0.8,
+      delay: 0.9
+    });
+
+    // Feature cards slide-in
+    gsap.from(".card", {
+      scrollTrigger: {
+        trigger: ".features",
+        start: "top 80%"
+      },
+      y: 60,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: "power2.out"
+    });
+
+    // CTA animation
+    gsap.from(".cta h2, .secondary-btn", {
+      scrollTrigger: {
+        trigger: ".cta",
+        start: "top 85%"
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2
+    });
+  </script>
 
 </body>
 </html>
